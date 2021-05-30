@@ -39,26 +39,34 @@
 `graph = TinkerFactory.createModern()`
 `g = traversal().withGraph(TinkerFactory.createModern())`
 
-### Check count data in graph
+### Check count data in graph and check releationship
 
-`g.V().count()`
-`g.V(1).values('name')`
-`g.V(1).outE('knows')`
-`g.V(1).outE('knows').inV().values('name')`
-`g.V(1).out('knows').values('name')`
-`g.V(1).out('knows').has('age', gt(30)).values('name')`
+* `g.V().count()`
+* `g.V(1).values('name')`
+* `g.V(1).outE('knows')`
+* `g.V(1).outE('knows').inV().values('name')`
+* `g.V(1).out('knows').values('name')`
+* `g.V(1).out('knows').has('age', gt(30)).values('name')`
 
 ### Add data
 
-`g = traversal().withGraph(TinkerGraph.open())`
-`v1 = g.addV("person").property(id, 1).property("name", "marko").property("age", 29).next()`
-`v2 = g.addV("software").property(id, 3).property("name", "lop").property("lang", "java").next()`
-`g.addE("created").from(v1).to(v2).property(id, 9).property("weight", 0.4)`
+* `g = traversal().withGraph(TinkerGraph.open())`
+* `v1 = g.addV("person").property(id, 1).property("name", "marko").property("age", 29).next()`
+* `v2 = g.addV("software").property(id, 3).property("name", "lop").property("lang", "java").next()`
+* `g.addE("created").from(v1).to(v2).property(id, 9).property("weight", 0.4)`
 
 ### Calculate mean by age
 
-`g.V().has('person','name',within('vadas','marko')).values('age').mean()`
+* `g.V().has('person','name',within('vadas','marko')).values('age').mean()`
 
 ### Group by
 
-`g.V().group().by(label).by('name')`
+* `g.V().group().by(label).by('name')`
+
+## Query to Neptune DB instance
+
+1. toList()
+2. toSet()
+3. next()
+4. nextTraverser()
+5. iterate()
