@@ -13,6 +13,7 @@
         -e gremlinserver.threadPoolWorker=2 \
         -e gremlinserver.channelizer=org.apache.tinkerpop.gremlin.server.channel.WsAndHttpChannelizer \
         -p 8182:8182 \
+        --mount src=/home/serg/projects/Bigdata/graph/data,target=/data,type=bind \
         janusgraph/janusgraph:latest`
 
 2. Connecting with Gremlin Console

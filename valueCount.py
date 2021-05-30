@@ -29,7 +29,7 @@ def main():
     print(g.V().valueMap().toList())
 
     # Group by
-    print(g.V().group().by('name').toList())
+    # print(g.V().group().by('name').toList())
     remoteConn.close()
 
 
