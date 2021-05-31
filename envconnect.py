@@ -1,5 +1,5 @@
 from shutil import copyfile
-from gremlin_python.structure.graph import Graph
+from gremlin_python.process.anonymous_traversal import traversal
 from gremlin_python.driver.driver_remote_connection import\
     DriverRemoteConnection
 import os
@@ -32,12 +32,11 @@ class RemoteGremlin(object):
         '''
         open the remote connection
         '''
-        self.graph = Graph()
         self.url = 'ws://%s:%s/gremlin' % (self.server, self.port)
         self.connection = DriverRemoteConnection(self.url, 'g')
         # The connection should be closed on shut down to close open
         # connections with connection.close()
-        self.g = self.graph.traversal().withRemote(self.connection)
+        self.g = traversal().withRemote(self.connection)
 
     def close(self):
         '''

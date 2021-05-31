@@ -13,7 +13,7 @@
         -e gremlinserver.threadPoolWorker=2 \
         -e gremlinserver.channelizer=org.apache.tinkerpop.gremlin.server.channel.WsAndHttpChannelizer \
         -p 8182:8182 \
-        --mount src=/home/serg/projects/Bigdata/graph/data,target=/data,type=bind \
+        --mount type=bind,src=$(pwd),target=/home/serg/projects/Bigdata/ \
         janusgraph/janusgraph:latest`
 
 2. Connecting with Gremlin Console
@@ -67,6 +67,6 @@
 
 1. toList()
 2. toSet()
-3. next()
+3. next() -  when you need the result (and you are expecting exactly one result)
 4. nextTraverser()
-5. iterate()
+5. iterate() -  when you don't need the result (typically mutation queries, that add/change properties, edges and/or vertices)
