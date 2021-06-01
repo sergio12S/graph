@@ -8,9 +8,9 @@
     `docker run --name janusgraph-default janusgraph/janusgraph:latest`
 
     * Container with settings
-    `docker run --name janusgraph-default \
+    `docker run --name gremlin \
         -e janusgraph.storage.berkeleyje.cache-percentage=80 \
-        -e gremlinserver.threadPoolWorker=2 \
+        -e gremlinserver.threadPoolWorker=4 \
         -e gremlinserver.channelizer=org.apache.tinkerpop.gremlin.server.channel.WsAndHttpChannelizer \
         -p 8182:8182 \
         --mount type=bind,src=$(pwd),target=/home/serg/projects/Bigdata/ \
