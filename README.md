@@ -70,3 +70,24 @@
 3. next() -  when you need the result (and you are expecting exactly one result)
 4. nextTraverser()
 5. iterate() -  when you don't need the result (typically mutation queries, that add/change properties, edges and/or vertices)
+
+## Query to controlling the recursion
+
+1. dedup() - Remove duplicates.
+2. where(neq("u861")) -  Exclude u861.
+3. repeat() - avoid combinatorial explosion!
+4. emit() - modulator to “output” all the traversed vertices.
+    If emit() is placed after repeat(), it will “output” all vertices leaving the repeat-traversal. If emit() is placed before repeat(), it will “output” the vertices prior to entering the repeat-traversal.
+5. until() is controlling when to break out of the recursion based on a condition.
+    As with emit() you can place until() before or after the repeat() step.
+
+## Technique to control the recursive combinatory explosion is to put a limit on the depth of each explored branch
+
+* `until(has("age", 32).or().loops().is(eq(3)))`
+* `repeat(out("knows").simplePath()))`
+* `g.V().has("user", "userId", "u861").until(has("age", 32)).repeat(out("knows").simplePath()).timeLimit(100).valueMap("userId", "age")`
+
+## Query
+
+* sideEffect - allow the traverser to proceed unchanged, but yield some computational sideEffect in the process (S ↬ S).
+* store() - store all objects into a set but only store their by()-modulated values.
